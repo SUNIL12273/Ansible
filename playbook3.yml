@@ -1,0 +1,26 @@
+---
+- name: configuration of apache2
+  hosts: all
+  tasks:
+   - name: install apache
+     apt:
+      name: apache2
+      state: present
+   - name: change the content in index.html
+     copy:
+      content: "It works this is your suni owner of this weserver"
+      dest: /var/www/html/index.html
+   - name: restarting of apche
+     service:
+      name: apache2
+      state: restarted 
+   - name: check the url responce in server1
+     uri:
+      url: http://54.205.151.184
+      status_code: 200
+
+   - name: check the url responce in server2
+     uri:
+      url: http://3.85.13.213
+      status_code: 200
+
