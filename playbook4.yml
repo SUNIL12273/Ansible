@@ -1,11 +1,16 @@
 ---
 - name: configureing tomcat webserver
-  hosts: all
+  hosts: dbserver
   tasks: 
    - name: installing tomcat8
      apt:
       name: tomcat8
       state: present
+   - name: installing tomcat8-admin
+     apt:
+      name: tomcat8-admin
+      state: present
+      update_cache: yes
    - name: copy the tomcat-users.xml file into it
      copy: 
       src: /home/ubuntu/tomcat-users.xml
@@ -23,8 +28,16 @@
      uri: 
       url: http://172.31.81.126:9090
       status_code: 200
-   - name: to check the url response of the server1
+   - name: to check the url response of the server2
      uri:
       url: http://172.31.80.10:9090
+      status_code: 200
+   - name: to check the url response of the server3
+     uri:
+      url: http://172.31.88.140:9090
+      status_code: 200
+   - name: to check the url response of the server4
+     uri:
+      url: http://172.31.84.155:9090
       status_code: 200
 ...
