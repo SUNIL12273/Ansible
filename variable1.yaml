@@ -1,0 +1,11 @@
+---
+- name: installing or Uninstalling s/w packages
+  hosts: all
+  tasks:
+    - name: installing/uninstalling s/w package
+      apt:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+
+...
